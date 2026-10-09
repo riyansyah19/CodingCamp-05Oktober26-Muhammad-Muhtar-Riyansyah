@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f6fa">
+  <meta name="description" content="Life Dashboard untuk mengatur tugas dan fokus harian.">
+  <title>Life Dashboard — Make Today Count</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/script.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Life Dashboard home">
+        <span class="brand-mark">✦</span>
+        <span>life<span class="brand-light">board</span></span>
+      </a>
+      <div class="topbar-actions">
+        <span class="today-pill"><span class="status-dot"></span> YOUR PERSONAL SPACE</span>
+        <button id="themeToggle" class="icon-button" type="button" aria-label="Ganti tema" title="Ganti tema">☾</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="welcome-row">
+        <div>
+          <p class="eyebrow" id="dateText">HARI INI</p>
+          <h1><span id="greetingText">Selamat datang</span>, <span id="displayName">Teman</span><span class="wave"> ✨</span></h1>
+          <p class="subheading">Satu langkah kecil tetap membawamu lebih dekat ke tujuan.</p>
+        </div>
+        <div class="clock-card">
+          <span class="clock-label">WAKTU SEKARANG</span>
+          <strong id="clockText">00:00:00</strong>
+          <span id="clockDate">Memuat tanggal...</span>
+        </div>
+      </section>
+
+      <section class="dashboard-grid">
+        <article class="panel task-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">MAKE IT HAPPEN</p>
+              <h2>Daftar tugas <span class="heading-emoji">✍️</span></h2>
+            </div>
+            <span id="taskCount" class="count-badge">0 tugas</span>
+          </div>
+
+          <form id="taskForm" class="task-form">
+            <label class="sr-only" for="taskInput">Tugas baru</label>
+            <input id="taskInput" type="text" maxlength="180" placeholder="Apa yang ingin kamu selesaikan?" autocomplete="off" required>
+            <button class="primary-button" type="submit"><span>＋</span> Tambah</button>
+          </form>
+          <p id="taskMessage" class="form-message" aria-live="polite"></p>
+
+          <div class="task-summary">
+            <div class="progress-track"><span id="progressBar"></span></div>
+            <span id="progressText">Belum ada tugas hari ini</span>
+          </div>
+          <div id="taskList" class="task-list" aria-live="polite"></div>
+          <div id="emptyState" class="empty-state">
+            <span class="empty-icon">☀</span>
+            <strong>Mulai dari satu hal kecil</strong>
+            <p>Tambahkan tugas pertamamu untuk hari ini.</p>
+          </div>
+        </article>
+
+        <div class="right-column">
+          <article class="panel focus-panel">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">STAY IN THE ZONE</p>
+                <h2>Focus session <span class="heading-emoji">🍅</span></h2>
+              </div>
+              <span class="focus-tag">POMODORO</span>
+            </div>
+            <p class="panel-description">Satu fokus. Satu waktu. Berikan perhatian terbaikmu.</p>
+            <div class="timer-wrap">
+              <svg class="timer-ring" viewBox="0 0 220 220" role="img" aria-label="Progress timer">
+                <circle class="ring-track" cx="110" cy="110" r="94"></circle>
+                <circle id="timerProgress" class="ring-progress" cx="110" cy="110" r="94"></circle>
+              </svg>
+              <div class="timer-center">
+                <span id="timerMode" class="timer-mode">FOCUS TIME</span>
+                <strong id="timerText">25:00</strong>
+                <span id="timerHint">Siap untuk mulai?</span>
+              </div>
+            </div>
+            <div class="timer-controls">
+              <button id="startTimer" class="primary-button timer-button" type="button">▶ Mulai</button>
+              <button id="stopTimer" class="secondary-button timer-button" type="button">Ⅱ Berhenti</button>
+              <button id="resetTimer" class="secondary-button reset-button" type="button" aria-label="Reset timer" title="Reset timer">↺</button>
+            </div>
+            <p id="timerMessage" class="timer-message" aria-live="polite"></p>
+          </article>
+
+          <article class="panel links-panel">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">YOUR DIGITAL DESK</p>
+                <h2>Quick links <span class="heading-emoji">↗</span></h2>
+              </div>
+            </div>
+            <p class="panel-description">Akses cepat ke situs favoritmu.</p>
+            <form id="linkForm" class="link-form">
+              <input id="linkName" type="text" maxlength="35" placeholder="Nama situs" aria-label="Nama situs" required>
+              <input id="linkUrl" type="url" placeholder="https://example.com" aria-label="Alamat situs" required>
+              <button class="primary-button add-link-button" type="submit" aria-label="Tambah tautan">＋</button>
+            </form>
+            <p id="linkMessage" class="form-message" aria-live="polite"></p>
+            <div id="quickLinks" class="quick-links"></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="bottom-row">
+        <div class="quote-card">
+          <span class="quote-mark">“</span>
+          <div>
+            <p class="quote-text">Progress, not perfection.</p>
+            <p class="quote-subtext">Konsistensi kecil hari ini adalah investasi untuk dirimu di masa depan.</p>
+          </div>
+        </div>
+        <div class="profile-card">
+          <div class="avatar">✦</div>
+          <div class="profile-copy">
+            <strong id="profileName">Teman</strong>
+            <span>Atur ruang produktifmu</span>
+          </div>
+          <button id="editName" class="secondary-button name-button" type="button">Ubah nama</button>
+        </div>
+      </section>
+    </main>
+    <footer>Made for your better days <span>✦</span> Data tersimpan di browser ini.</footer>
+  </div>
+</body>
+</html>
